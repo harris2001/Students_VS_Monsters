@@ -16,10 +16,11 @@ public class StudentTeam extends Team {
 
 		for(Character enemy : enemyTeam.getMembers()) {
 			if(enemy.getHP() > 0) {
-				if(student.MaxKPReached()) {
+				if(student.MaxKPReached() == true) {
 					student.specialMove(enemyTeam);
 				}
 				else {
+					//Randomly strike either the strongest player of the team or the next enemy
 					Random r = new Random();
 					int n = r.nextInt(2);
 					if(n == 1)

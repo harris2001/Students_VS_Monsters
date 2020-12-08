@@ -33,7 +33,7 @@ public class CSStudent extends Student {
 		enemy.decreaseHP(damage);
 
 		System.out.println(this.getName() + " uses pairWorking with friend: " + friend.getName());
-		System.out.println("Together they attack " + enemy.getName() + "by: " + damage);
+		System.out.println("Together they attack " + enemy.getName() + " => Damage: -" + damage);
 		
 		//If target was killed, get 4 extra EP points
 		if(enemy.getHP() == 0) {
@@ -60,6 +60,7 @@ public class CSStudent extends Student {
 		friend.increaseHP(this.getDefence());
 	}
 
+	//Providing implementation for the abstract method in Students class
 	public void specialMove(Team enemyTeam) throws Exception {
 		Team allies = this.getTeam();
 		Random r = new Random();

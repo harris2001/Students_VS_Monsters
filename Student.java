@@ -27,7 +27,7 @@ public abstract class Student extends Character {
 		int damage = (100 * this.getAttack()) / (100 + enemy.getDefence());
 		enemy.decreaseHP(damage);
 
-		System.out.println(this.getName() + " uses javaProgramming() to attack " + enemy.getName());
+		System.out.println(this.getName() + " uses javaProgramming to attack " + enemy.getName());
 		System.out.println("Damage: -" + damage);
 		
 		//Enemy gains 2 experience points
@@ -41,11 +41,13 @@ public abstract class Student extends Character {
 		//if the enemy is dead, the character gains 4 experience points
 		if(enemy.getHP() == 0) {
 			this.increaseEP(4);
+			System.out.println("Enemy killed +4 EPs");						
 		}
 	}
 
 	public void selfStudy() {
-		System.out.println(" uses selfStudy() to heal himself");
+		System.out.println(" uses selfStudy to heal himself");
+		System.out.println("Increasing HP by +2");
 		this.increaseHP(2);
 		this.increaseEP(6);
 		this.increaseKP(2);
@@ -53,16 +55,26 @@ public abstract class Student extends Character {
 
 	//Returns true when a student has reached the full KPs and can perform a special attack
 	public boolean MaxKPReached(){
-		if(this.currentKP == this.maxKP) {
+		if(currentKP >= maxKP) {
 			return true;
 		}
 		return false;
 	}	
 
+	//Is called by StudentsTeam to chose which attack to perform
 	public void strike(Character enemy) {
 		Random r = new Random();
 		int n = r.nextInt(100);
-		if(n < 70) {
+		//If KP is max -> do a special move
+		if (MaxKPReached() == true){
+			try{
+				specialMove(enemy.getTeam());
+			}
+			catch(Exception e) {
+				System.out.println(e);
+			}
+		}
+		else if(n < 70) {	// Else perform a basic attack with probability 70% towards javaProgramming
 			javaProgramming(enemy);
 		}
 		else {

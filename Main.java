@@ -7,6 +7,7 @@ public class Main {
 		Team steam = new StudentTeam("Student Team");
 		Team mteam = new MonsterTeam("Monster Team");
 
+		//Creating students (2x Each subject)
 		Character studentA = new AIStudent("AIStudent1");
 		Character studentB = new AIStudent("AIStudent2");
 		Character studentC = new CyberStudent("CyberStudent1");
@@ -16,7 +17,17 @@ public class Main {
 		Character studentG = new CSStudent("CSStudent1");
 		Character studentH = new CSStudent("CSStudent2");
 
+		//Setting students team
+		studentA.setTeam(steam);
+		studentB.setTeam(steam);
+		studentC.setTeam(steam);
+		studentD.setTeam(steam);
+		studentE.setTeam(steam);
+		studentF.setTeam(steam);
+		studentG.setTeam(steam);
+		studentH.setTeam(steam);
 
+		//Adding students into team
 		steam.addMember(studentA);
 		steam.addMember(studentB);
 		steam.addMember(studentC);
@@ -26,15 +37,8 @@ public class Main {
 		steam.addMember(studentG);
 		steam.addMember(studentH);
 
-studentA.setTeam(steam);
-studentB.setTeam(steam);
-studentC.setTeam(steam);
-studentD.setTeam(steam);
-studentE.setTeam(steam);
-studentF.setTeam(steam);
-studentG.setTeam(steam);
-studentH.setTeam(steam);
 
+		//Creating monster
 		Character monster1 = new Minion("Minion1");
 		Character monster2 = new Minion("Minion2");
 		Character monster3 = new Minion("Minion3");
@@ -60,15 +64,16 @@ monster5.setTeam(mteam);
 monster6.setTeam(mteam);
 monster7.setTeam(mteam);
 
-
 //Creating a guild
 		Guild g = new Guild();
-		g.addMember((AIStudent)studentA);
-		g.addMember((AIStudent)studentB);
-		g.addMember((CyberStudent)studentC);
-		g.addMember((CyberStudent)studentD);
-		g.addMember((SEStudent)studentE);
-		g.addMember((SEStudent)studentF);
+		g.addMember(studentA);
+		g.addMember(studentB);
+		g.addMember(studentC);
+		g.addMember(studentD);
+		g.addMember(studentE);
+		g.addMember(studentF);
+		g.addMember(studentG);
+		g.addMember(studentH);
 /*
 		ArrayList<Character> a = new ArrayList<Character>();
 		a = g.getTeam(mteam);
@@ -83,7 +88,7 @@ monster7.setTeam(mteam);
 			System.out.println(c.getName()+" "+c.getHP());
 		}*/
 		Team teamStudents = g.getTeam(mteam);
-		Team teamMonsters = (Team)mteam;
+		Team teamMonsters = mteam;
 		Battle b = new Battle(teamStudents, teamMonsters);
 		b.fight();
 /*

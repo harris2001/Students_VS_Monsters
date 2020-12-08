@@ -26,7 +26,7 @@ public class Minion extends Character implements Monster {
 		else {
 			a = Attacks.ArrayIndexOutOfBoundException;
 		}
-		System.out.println(" uses " + a + " attack");
+		System.out.print(" uses " + a);
 		return a;
 	}
 
@@ -41,17 +41,20 @@ public class Minion extends Character implements Monster {
 
 		//Choosing which attack the minion will use
 		Attacks a = chooseAttack();
-
+		int damage = 0;
 
 		//Checking the type of attack using a switch statement
 		switch(a) {		
 			
 			case SyntaxError:				
 				//typical attack on enemies
+				
+				damage = (100 * this.getDefence() / (100 + enemy.getDefence()));
+				enemy.decreaseHP(damage);
+
 				System.out.println(" to attack " + enemy.getName());
-				
-				enemy.decreaseHP(100 * this.getDefence() / (100 + enemy.getDefence()));
-				
+				System.out.println("Damage: -" + damage);
+
 				/********************Give aknowledge points********************/
 				this.increaseEP(3);
 				enemy.increaseEP(3);
@@ -60,14 +63,17 @@ public class Minion extends Character implements Monster {
 				}
 				if(enemy.getHP() == 0) {
 					this.increaseEP(4);
+					System.out.println("Enemy killed +4 EPs");			
 				}
 				/***************************************************************/
 				break;
 			
 			case NullPointerException:				
 				//Healing
-				System.out.println(" to heal itself");
 				this.increaseHP(this.getDefence());
+
+				System.out.println(" to heal itself");
+				System.out.println("Increasing HP by +" + this.getDefence());				
 				
 				/********************Give aknowledge points********************/
 				this.increaseEP(3);
@@ -76,8 +82,12 @@ public class Minion extends Character implements Monster {
 			
 			case ArrayIndexOutOfBoundException:
 				//Double the power
-				System.out.println(" to " + enemy.getName());
-				enemy.decreaseHP(2 * 100 * this.getDefence() / (100 + enemy.getDefence()));
+				damage = (2 * 100 * this.getDefence() / (100 + enemy.getDefence()));
+				enemy.decreaseHP(damage);
+
+				System.out.println(" to attack " + enemy.getName());
+				System.out.println("Damage: -" + damage);
+
 				/********************Give aknowledge points********************/
 				this.increaseEP(3);
 				enemy.increaseEP(3);
@@ -86,6 +96,7 @@ public class Minion extends Character implements Monster {
 				}
 				if(enemy.getHP() == 0) {
 					this.increaseEP(4);
+					System.out.println("Enemy killed +4 EPs");			
 				}
 				/***************************************************************/
 				break;

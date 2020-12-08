@@ -33,7 +33,7 @@ public class Boss extends Character implements Monster {
 		else {
 			a = Attacks.ConcurrentModificationException;
 		}
-		System.out.println(" Special Attacks " + a.toString());
+		System.out.print(" uses special attack " + a.toString());
 		return a;
 	}
 
@@ -47,12 +47,16 @@ public class Boss extends Character implements Monster {
 
 		//Choosing which attack the minion will use
 		Attacks a = chooseAttack();
+		int damage = 0;
 
 		//Checking the type of attack using a switch statement
 		switch(a) {		
 			case SyntaxError:
 				//typical attack on enemies
-				enemy.decreaseHP(100 * this.getDefence() / (100 + enemy.getDefence()));
+				damage = (100 * this.getDefence() / (100 + enemy.getDefence()));
+				enemy.decreaseHP(damage);
+				System.out.println(" to attack " + enemy.getName());
+				System.out.println("Damage: -" + damage);
 				/********************Give aknowledge points********************/
 				this.increaseEP(3);
 				enemy.increaseEP(3);
@@ -61,12 +65,15 @@ public class Boss extends Character implements Monster {
 				}
 				if(enemy.getHP() == 0) {
 					this.increaseEP(4);
+					System.out.println("Enemy killed +4 EPs");			
 				}
 				/***************************************************************/
 				break;
 			
 			case NullPointerException:
 				//Healing
+				System.out.println(" to heal");
+				System.out.println("Increasing HP by +" + this.getDefence());
 				this.increaseHP(this.getDefence());
 				/********************Give aknowledge points********************/
 				this.increaseEP(3);
@@ -75,7 +82,10 @@ public class Boss extends Character implements Monster {
 			
 			case ArrayIndexOutOfBoundException:
 				//Double the power
-				enemy.decreaseHP(2 * 100 * this.getDefence() / (100 + enemy.getDefence()));
+				damage = (2 * 100 * this.getDefence() / (100 + enemy.getDefence()));
+				enemy.decreaseHP(damage);
+				System.out.println(" to attack " + enemy.getName());
+				System.out.println("Damage -" + damage);
 				/********************Give aknowledge points********************/
 				this.increaseEP(3);
 				enemy.increaseEP(3);
@@ -84,17 +94,22 @@ public class Boss extends Character implements Monster {
 				}
 				if(enemy.getHP() == 0) {
 					this.increaseEP(4);
+					System.out.println("Enemy killed +4 EPs");			
 				}
 				/***************************************************************/
 				break;
 			
 			case NoneTermination:
 				//Revive dead allies
+				System.out.println(" to revive dead allies");
+				
 				Character[] team = this.getTeam().getMembers();
+
 				for(int i = 0; i < team.length; i++){
 					Character ally = team[i];
 					if(ally.getHP() == 0) {
 						ally.increaseHP(this.getMaxHP());
+						System.out.println("Reviving ally " + ally.getName() + ": +" + this.getMaxHP());
 					}
 				}
 				/********************Give aknowledge points********************/
@@ -104,19 +119,22 @@ public class Boss extends Character implements Monster {
 
 			case ConcurrentModificationException:
 				//Attacking alive enemies
-			
+				System.out.println("to attack all alive enemies");
+
 				Character[] enemies = enemy.getTeam().getMembers();
 			
 				for(int i = 0; i < enemies.length; i++){
 					Character target = enemies[i];
 					if(target.getHP() > 0) {
 						target.decreaseHP(this.getAttack());
+						System.out.println("Attacking enemy " + enemy.getName() + ": -" + this.getAttack());
 						enemy.increaseEP(3);
 						if(enemy instanceof Student) {
 							((Student)enemy).increaseKP(3);
 						}
 						if(enemy.getHP() == 0) {
 							this.increaseEP(4);
+							System.out.println("Enemy killed +4 EPs");			
 						}
 					}
 				}

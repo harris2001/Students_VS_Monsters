@@ -21,7 +21,10 @@ public class SEStudent extends Student {
 
 		this.increaseEP(4);
 		this.currentKP = 0;
+		int damage = 0;
 		
+		System.out.println(" uses groupWork attack:");
+
 		//Create a characters array of the character team
 		Character[] team_members = ((Character)this).getTeam().getMembers();
 		//Iterate over all members of the team
@@ -30,13 +33,16 @@ public class SEStudent extends Student {
 			//If team member is still alive
 			if(ally.getHP() > 0){
 				//Attack the enemy with his basic attack
-				enemy.decreaseHP((100 * ally.getAttack()) / (100 + enemy.getDefence()));
+				damage = ((100 * ally.getAttack()) / (100 + enemy.getDefence()));
+				enemy.decreaseHP(damage);
+				System.out.println("Damage -" + damage + " to " + enemy.getName());
 			}
 		}
 
 		//If target was killed, get 4 extra EP points
 		if(enemy.getHP() == 0) {
 			this.increaseEP(4);
+			System.out.println("Enemy killed +4 EPs");			
 		}
 	}
 
@@ -51,6 +57,9 @@ public class SEStudent extends Student {
 
 		this.increaseEP(4);
 		this.currentKP = 0;
+		int damage = 0;
+
+		System.out.println(" uses groupDiscussion attack:");
 
 		//Create a characters array of the character team
 		Character[] team_members = ((Character)this).getTeam().getMembers();
@@ -61,6 +70,7 @@ public class SEStudent extends Student {
 			if(ally.getHP() > 0){
 				//increase his HP by half the value of this player Defence
 				ally.increaseHP(this.getDefence() / 2);
+				System.out.println("Healing ally: " + ally.getName() + " +" + (this.getDefence()/2) );
 			}
 		}
 	}

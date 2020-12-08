@@ -18,6 +18,7 @@ public class CyberStudent extends Student {
 		
 		this.increaseEP(4);
 		this.currentKP = 0;
+		int damage = 0;
 
 		//create a characters array - the enemy team
 		Character[] targets = enemyTeam.getMembers();
@@ -27,11 +28,15 @@ public class CyberStudent extends Student {
 			//If enemy is still alive
 			if(enemy.getHP() > 0) {
 				//Attack him
-				enemy.decreaseHP((100 * this.getAttack()) / (100 + enemy.getDefence()));
+				damage = ((100 * this.getAttack()) / (100 + enemy.getDefence()));
+				enemy.decreaseHP(damage);
+
+				System.out.println("Damage -" + damage + " to " + enemy.getName());
 
 				//If target was killed, get 4 extra EP points
 				if(enemy.getHP() == 0) {
 					this.increaseEP(4);
+					System.out.println("Enemy killed +4 EPs");			
 				}
 			}
 		}
