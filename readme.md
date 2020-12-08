@@ -24,14 +24,14 @@ maxPlayerHP(), maxPlayerHP(Character me), minPlayerHP(Character me), totalTeamHP
 ## Part 4 ##
 - I have implemented the StudentTeam, MonsterTeam, and Guild Classes following the coursework specification
 
-* The Guild: Selecting Students with most KP first and then complete the team with the rest
+- *The Guild* : Selecting Students with most KP first and then complete the team with the rest
 
 The strategy for the different students is as folllows.
-* Student: If students has reached the maxKP then use a special attack otherways, perform either javaProgramming skill or selfStudy on a 70:30 proportion
-* AIStudent: AI students only heal themselves if they are the weaker players of the team using the naturalLanguageProcessing method. Otherways, they attack using their machine learning skills
-* CSStudent: CSStudents perform one of their normal attacks at random if they can't perform any special move when no friends are still alive. Otherways chose a special attack with 50:50 proportion to the strongest player of the enemy team
-* SEStudent: SES students see the general image of the game: if the students' team has less HP that the enemies, they heal themselves. Otherways, they combine their powers to take down the strongest enemy
-* CyberStudent: They have only one special attack to use
+- *Student* : If students has reached the maxKP then use a special attack otherways, perform either javaProgramming skill or selfStudy on a 70:30 proportion
+- *AIStudent* : AI students only heal themselves if they are the weaker players of the team using the naturalLanguageProcessing method. Otherways, they attack using their machine learning skills
+- *CSStudent* : CSStudents perform one of their normal attacks at random if they can't perform any special move when no friends are still alive. Otherways chose a special attack with 50:50 proportion to the strongest player of the enemy team
+- *SEStudent* : SES students see the general image of the game: if the students' team has less HP that the enemies, they heal themselves. Otherways, they combine their powers to take down the strongest enemy
+- *CyberStudent* : They have only one special attack to use
 
 ## Part 5 ##
 - I have implemented the Battle Class following th coursework specification
