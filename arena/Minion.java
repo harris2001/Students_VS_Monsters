@@ -50,30 +50,29 @@ public class Minion extends Character implements Monster {
 				//typical attack on enemies
 				
 				damage = (100 * this.getDefence() / (100 + enemy.getDefence()));
+				System.out.println(" to attack " + enemy.getName());
 				enemy.decreaseHP(damage);
 
-				System.out.println(" to attack " + enemy.getName());
-				System.out.println("Damage: -" + damage);
 
 				/********************Give aknowledge points********************/
-				this.increaseEP(3);
 				enemy.increaseEP(3);
 				if(enemy instanceof Student) {
 					((Student)enemy).increaseKP(3);
 				}
 				if(enemy.getHP() == 0) {
 					this.increaseEP(4);
-					System.out.println("Enemy killed +4 EPs");			
+					System.out.println("An enemy has been killed");			
 				}
+				this.increaseEP(3);
 				/***************************************************************/
 				break;
 			
 			case NullPointerException:				
 				//Healing
-				this.increaseHP(this.getDefence());
-
 				System.out.println(" to heal itself");
 				System.out.println("Increasing HP by +" + this.getDefence());				
+
+				this.increaseHP(this.getDefence());
 				
 				/********************Give aknowledge points********************/
 				this.increaseEP(3);
@@ -82,22 +81,21 @@ public class Minion extends Character implements Monster {
 			
 			case ArrayIndexOutOfBoundException:
 				//Double the power
+				System.out.println(" to attack " + enemy.getName());
+
 				damage = (2 * 100 * this.getDefence() / (100 + enemy.getDefence()));
 				enemy.decreaseHP(damage);
 
-				System.out.println(" to attack " + enemy.getName());
-				System.out.println("Damage: -" + damage);
-
 				/********************Give aknowledge points********************/
-				this.increaseEP(3);
 				enemy.increaseEP(3);
 				if(enemy instanceof Student) {
 					((Student)enemy).increaseKP(3);
 				}
 				if(enemy.getHP() == 0) {
 					this.increaseEP(4);
-					System.out.println("Enemy killed +4 EPs");			
+					System.out.println("An enemy has been killed");			
 				}
+				this.increaseEP(3);
 				/***************************************************************/
 				break;
 			

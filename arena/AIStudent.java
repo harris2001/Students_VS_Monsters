@@ -19,21 +19,21 @@ public class AIStudent extends Student {
 		}
 		/******************************************************************************/
 
-		this.increaseEP(4);
 		this.currentKP = 0;
 
 		//double damage of the basic attack of the character
 		int damage = (2 * (100 * this.getAttack()) / (100 + enemy.getDefence()));
-		enemy.decreaseHP(damage);
 		
 		System.out.println(this.getName() + " uses machineLearning to attack "+ enemy.getName());
-		System.out.println("Damage: -" + damage);
+		enemy.decreaseHP(damage);
+		
 
 		//If target was killed, get 4 extra EP points
 		if(enemy.getHP() == 0) {
+			System.out.println("An enemy has been killed");			
 			this.increaseEP(4);
-			System.out.println("Enemy killed +4 EPs");			
 		}
+
 	}
 
 	public void naturalLanguageProcessing() throws Exception {
@@ -45,12 +45,11 @@ public class AIStudent extends Student {
 		}
 		/******************************************************************************/
 
-		this.increaseEP(4);
 		this.currentKP = 0;
-		this.increaseHP(this.getDefence());
 		
 		System.out.println(this.getName() + " uses naturalLanguageProcessing secial skill");
-		System.out.println("Increasing HP by +" + this.getDefence());
+		this.increaseHP(this.getDefence());
+
 	}
 
 	//AI students only heal themselves if they are the weaker players of the team using the naturalLanguageProcessing method
@@ -62,5 +61,9 @@ public class AIStudent extends Student {
 		else {
 			machineLearning(enemyTeam.maxPlayerHP());
 		}
+		
+		/********************Give aknowledge points********************/
+		this.increaseEP(4);
+		/***************************************************************/
 	}
 }

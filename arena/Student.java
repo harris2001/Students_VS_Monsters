@@ -14,6 +14,7 @@ public abstract class Student extends Character {
 
 	public void increaseKP(int amount) {
 		this.currentKP += amount;
+		System.out.println(this.getName() + " increasing KP: +" + amount);
 	}
 
 	public int getKP() {
@@ -28,7 +29,6 @@ public abstract class Student extends Character {
 		enemy.decreaseHP(damage);
 
 		System.out.println(this.getName() + " uses javaProgramming to attack " + enemy.getName());
-		System.out.println("Damage: -" + damage);
 		
 		//Enemy gains 2 experience points
 		enemy.increaseEP(2);
@@ -41,13 +41,12 @@ public abstract class Student extends Character {
 		//if the enemy is dead, the character gains 4 experience points
 		if(enemy.getHP() == 0) {
 			this.increaseEP(4);
-			System.out.println("Enemy killed +4 EPs");						
+			System.out.println("An enemy has been killed");						
 		}
 	}
 
 	public void selfStudy() {
 		System.out.println(" uses selfStudy to heal himself");
-		System.out.println("Increasing HP by +2");
 		this.increaseHP(2);
 		this.increaseEP(6);
 		this.increaseKP(2);
@@ -74,7 +73,7 @@ public abstract class Student extends Character {
 				System.out.println(e);
 			}
 		}
-		else if(n < 70) {	// Else perform a basic attack with probability 70% towards javaProgramming
+		else if(n < 60) {	// Else perform a basic attack with probability 60% towards javaProgramming
 			javaProgramming(enemy);
 		}
 		else {

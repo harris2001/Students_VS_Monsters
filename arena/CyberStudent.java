@@ -16,7 +16,6 @@ public class CyberStudent extends Student {
 		}
 		/******************************************************************************/
 		
-		this.increaseEP(4);
 		this.currentKP = 0;
 		int damage = 0;
 
@@ -31,15 +30,17 @@ public class CyberStudent extends Student {
 				damage = ((100 * this.getAttack()) / (100 + enemy.getDefence()));
 				enemy.decreaseHP(damage);
 
-				System.out.println("Damage -" + damage + " to " + enemy.getName());
-
 				//If target was killed, get 4 extra EP points
 				if(enemy.getHP() == 0) {
+					System.out.println("An enemy has been killed");			
 					this.increaseEP(4);
-					System.out.println("Enemy killed +4 EPs");			
 				}
 			}
 		}
+
+		/********************Give aknowledge points********************/
+		this.increaseEP(4);
+		/***************************************************************/
 	}
 
 	public void specialMove(Team enemyTeam) throws Exception {

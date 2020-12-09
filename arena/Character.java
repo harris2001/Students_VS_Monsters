@@ -70,6 +70,7 @@ public class Character implements Comparable<Character> {
 	//Defining the mutators
 
 	public void increaseHP(int amount) {
+		System.out.println(this.name + " increase HP: +" + amount);
 		//Increasing the HP value by the amount given if it is less than the maxHP
 		if(currentHP + amount <= getMaxHP()) {
 			currentHP += amount;
@@ -81,6 +82,7 @@ public class Character implements Comparable<Character> {
 	}
 
 	public void decreaseHP(int amount) {
+		System.out.println(this.name + " decrease HP: -" + amount);
 		//Decreasing the HP value by the amount given
 		if(currentHP - amount >= 0) {
 			currentHP -= amount;
@@ -92,9 +94,12 @@ public class Character implements Comparable<Character> {
 	}
 
 	public void increaseEP(int amount) {
+		System.out.println(this.name + " increase EP: +" + amount);
 		currentEP += amount;
 		if(currentEP >= getTargetEP()) {
 			level += 1;
+			System.out.println("Level Up ");
+			System.out.println(this.name + " has reached level " + level);
 			currentEP = 0;
 			if(currentHP > 0) {
 				currentHP = getMaxHP();

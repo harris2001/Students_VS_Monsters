@@ -25,21 +25,24 @@ public class CSStudent extends Student {
 		}
 		/******************************************************************************/
 
-		this.increaseEP(4);
 		this.currentKP = 0;
 
 		//combine the basic attack of the character and its friend
+		System.out.println(this.getName() + " uses pairWorking with friend: " + friend.getName());
+		System.out.println("Together they attack " + enemy.getName());
+
 		int damage = (100 * (this.getAttack() + friend.getAttack() )) / (100 + enemy.getDefence());
 		enemy.decreaseHP(damage);
-
-		System.out.println(this.getName() + " uses pairWorking with friend: " + friend.getName());
-		System.out.println("Together they attack " + enemy.getName() + " => Damage: -" + damage);
 		
 		//If target was killed, get 4 extra EP points
 		if(enemy.getHP() == 0) {
+			System.out.println("An enemy has been killed");
 			this.increaseEP(4);
-			System.out.println("Enemy killed +4 EPs");
 		}
+		
+		/********************Give aknowledge points********************/
+		this.increaseEP(4);
+		/***************************************************************/
 	}
 
 	public void support(Character friend) throws Exception {
@@ -55,9 +58,12 @@ public class CSStudent extends Student {
 		}
 		/******************************************************************************/
 
-		this.increaseEP(4);
 		this.currentKP = 0;
 		friend.increaseHP(this.getDefence());
+		
+		/********************Give aknowledge points********************/
+		this.increaseEP(4);
+		/***************************************************************/
 	}
 
 	//Providing implementation for the abstract method in Students class

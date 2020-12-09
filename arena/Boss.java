@@ -54,26 +54,25 @@ public class Boss extends Character implements Monster {
 			case SyntaxError:
 				//typical attack on enemies
 				damage = (100 * this.getDefence() / (100 + enemy.getDefence()));
-				enemy.decreaseHP(damage);
 				System.out.println(" to attack " + enemy.getName());
-				System.out.println("Damage: -" + damage);
+				enemy.decreaseHP(damage);
+
 				/********************Give aknowledge points********************/
-				this.increaseEP(3);
 				enemy.increaseEP(3);
 				if(enemy instanceof Student) {
 					((Student)enemy).increaseKP(3);
 				}
 				if(enemy.getHP() == 0) {
+					System.out.println("An enemy has been killed");			
 					this.increaseEP(4);
-					System.out.println("Enemy killed +4 EPs");			
 				}
+				this.increaseEP(3);
 				/***************************************************************/
 				break;
 			
 			case NullPointerException:
 				//Healing
-				System.out.println(" to heal");
-				System.out.println("Increasing HP by +" + this.getDefence());
+				System.out.println(" to heal himself");
 				this.increaseHP(this.getDefence());
 				/********************Give aknowledge points********************/
 				this.increaseEP(3);
@@ -83,9 +82,8 @@ public class Boss extends Character implements Monster {
 			case ArrayIndexOutOfBoundException:
 				//Double the power
 				damage = (2 * 100 * this.getDefence() / (100 + enemy.getDefence()));
-				enemy.decreaseHP(damage);
 				System.out.println(" to attack " + enemy.getName());
-				System.out.println("Damage -" + damage);
+				enemy.decreaseHP(damage);
 				/********************Give aknowledge points********************/
 				this.increaseEP(3);
 				enemy.increaseEP(3);
@@ -93,8 +91,8 @@ public class Boss extends Character implements Monster {
 					((Student)enemy).increaseKP(3);
 				}
 				if(enemy.getHP() == 0) {
+					System.out.println("An enemy has been killed");			
 					this.increaseEP(4);
-					System.out.println("Enemy killed +4 EPs");			
 				}
 				/***************************************************************/
 				break;
@@ -108,8 +106,8 @@ public class Boss extends Character implements Monster {
 				for(int i = 0; i < team.length; i++){
 					Character ally = team[i];
 					if(ally.getHP() == 0) {
+						System.out.println("Reviving ally " + ally.getName());
 						ally.increaseHP(this.getMaxHP());
-						System.out.println("Reviving ally " + ally.getName() + ": +" + this.getMaxHP());
 					}
 				}
 				/********************Give aknowledge points********************/
@@ -126,15 +124,15 @@ public class Boss extends Character implements Monster {
 				for(int i = 0; i < enemies.length; i++){
 					Character target = enemies[i];
 					if(target.getHP() > 0) {
+						System.out.println("Attacking enemy " + enemy.getName());
 						target.decreaseHP(this.getAttack());
-						System.out.println("Attacking enemy " + enemy.getName() + ": -" + this.getAttack());
 						enemy.increaseEP(3);
 						if(enemy instanceof Student) {
 							((Student)enemy).increaseKP(3);
 						}
 						if(enemy.getHP() == 0) {
+							System.out.println("An enemy has been killed");			
 							this.increaseEP(4);
-							System.out.println("Enemy killed +4 EPs");			
 						}
 					}
 				}
